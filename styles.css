@@ -64,7 +64,8 @@ header.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
   gap: 16px;
 }
 .mini-items {
@@ -157,7 +158,8 @@ header.nav {
   align-items: center;
   justify-content: space-between;
   min-height: 84px;
-  padding: 8px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .brand {
   display: flex;
@@ -498,7 +500,8 @@ footer .brand-logo {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
-  padding: 72px 0;
+  padding-top: 72px;
+  padding-bottom: 72px;
 }
 .hero h1 {
   font-size: 48px;
@@ -543,7 +546,8 @@ footer .brand-logo {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 32px;
-  padding: 90px 0;
+  padding-top: 90px;
+  padding-bottom: 90px;
   z-index: 2;
 }
 .hero-copy h1 {
@@ -849,7 +853,8 @@ footer .brand-logo {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 30px;
-  padding: 80px 0;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 .page-eyebrow {
   letter-spacing: 1.6px;
@@ -1853,15 +1858,18 @@ button {
   }
   .hero-inner {
     grid-template-columns: 1fr;
-    padding: 56px 0;
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
   .hero-grid {
     grid-template-columns: 1fr;
-    padding: 70px 0;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
   .page-hero-inner {
     grid-template-columns: 1fr;
-    padding: 70px 0;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
   .steps-grid {
     grid-template-columns: 1fr;
@@ -1987,7 +1995,8 @@ button {
     width: 100%;
   }
   .hero-inner {
-    padding: 48px 0;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
   .hero h1 {
     font-size: 32px;
@@ -1999,7 +2008,8 @@ button {
     height: 280px;
   }
   .hero-grid {
-    padding: 60px 0;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
   .hero-copy h1 {
     font-size: 30px;
@@ -2008,7 +2018,8 @@ button {
     font-size: 15px;
   }
   .page-hero-inner {
-    padding: 60px 0;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
   .page-hero h1 {
     font-size: 30px;
