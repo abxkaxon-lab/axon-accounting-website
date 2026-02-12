@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axon Admin</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="mini-header">
+      <div class="container mini-inner">
+        <div class="mini-items">
+          <div class="mini-item"><span class="mini-icon">🏢</span><span>Office No. 227, Oud Metha Offices, Dubai</span></div>
+          <div class="mini-item"><span class="mini-icon">📞</span><span>+971 - 556730754</span></div>
+        </div>
+        <div class="mini-actions">
+          <a class="mini-link" href="index.html">Back to Site</a>
+          <a class="mini-btn" href="contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="logo-axon.png" alt="Axon Accounting">
+      </a>
+      <div class="admin-title">Admin Leads</div>
+    </div>
+  </header>
+  <section class="section admin-section">
+    <div class="container">
+      <div class="admin-card" id="admin-login">
+        <h2>Admin Login</h2>
+        <form id="admin-login-form">
+          <input type="text" id="admin-user" placeholder="Username">
+          <input type="password" id="admin-pass" placeholder="Password">
+          <button class="cta" type="submit">Sign In</button>
+        </form>
+        <div class="form-success" id="admin-login-msg" role="status"></div>
+      </div>
+      <div class="admin-card admin-panel" id="admin-panel" hidden>
+        <div class="admin-head">
+          <h2>Leads</h2>
+          <div class="admin-actions">
+            <button class="cta secondary" id="admin-export" type="button">Export CSV</button>
+            <button class="cta small" id="admin-clear" type="button">Clear Leads</button>
+            <button class="cta small" id="admin-logout" type="button">Logout</button>
+          </div>
+        </div>
+        <div class="admin-kpis">
+          <div class="kpi-card">
+            <div class="kpi-label">Total Leads</div>
+            <div class="kpi-value" id="kpi-total">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Latest Lead</div>
+            <div class="kpi-value" id="kpi-latest">-</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Inquiries</div>
+            <div class="kpi-value" id="kpi-inquiry">0</div>
+          </div>
+        </div>
+        <div class="admin-empty" id="admin-empty">No leads yet.</div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-card admin-panel" id="crm-panel" hidden>
+        <div class="admin-head">
+          <h2>CRM Integration</h2>
+        </div>
+        <form id="crm-form" class="crm-form">
+          <div class="full"><input type="url" id="crm-url" placeholder="CRM Webhook URL"></div>
+          <div class="full">
+            <label class="crm-toggle">
+              <input type="checkbox" id="crm-enabled">
+              <span>Enable CRM Sync</span>
+            </label>
+          </div>
+          <div class="full"><button class="cta" type="submit">Save Settings</button></div>
+          <div class="form-success" id="crm-msg" role="status"></div>
+        </form>
+      </div>
+      <div class="admin-card admin-panel" id="nav-admin-panel" hidden>
+        <div class="admin-head">
+          <h2>Menu Manager</h2>
+          <div class="admin-actions">
+            <button class="cta small" id="nav-reset" type="button">Reset Menu</button>
+          </div>
+        </div>
+        <form id="nav-form" class="nav-form">
+          <div class="full"><input type="text" id="nav-label" placeholder="Category or Subcategory Name"></div>
+          <input type="text" id="nav-url" placeholder="Link URL (optional for parent)">
+          <select id="nav-parent">
+            <option value="">Top Level Category</option>
+          </select>
+          <div class="full"><button class="cta" type="submit">Add Menu Item</button></div>
+          <div class="form-success" id="nav-msg" role="status"></div>
+        </form>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>URL</th>
+                <th>Parent</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="nav-list"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
