@@ -4,42 +4,45 @@ document.addEventListener('DOMContentLoaded', function() {
       // 1. Home
       { id: 'home', label: 'Home', url: 'index.html', parentId: '' },
 
-      // 2. Accounting & Services (Top Priority)
-      { id: 'accounting-root', label: 'Accounting & Services', url: '#', parentId: '' },
+      // 2. Accountant & Bookkeeping
+      { id: 'accounting-root', label: 'Accountant & Bookkeeping', url: '#', parentId: '' },
       
-      // Bookkeeping (Direct Link)
+      // Bookkeeping
       { id: 'bookkeeping', label: 'Bookkeeping', url: 'bookkeeping.html', parentId: 'accounting-root' },
-
-      // VAT Services (Group)
-      { id: 'vat-group', label: 'VAT Services', url: '#', parentId: 'accounting-root' },
-      { id: 'vat-proc', label: 'VAT Accounting', url: 'vat-accounting.html', parentId: 'vat-group' },
-      { id: 'vat-return', label: 'VAT Return Filing', url: 'vat-return.html', parentId: 'vat-group' },
-
-      // Audit & Assurance (Group)
-      { id: 'audit-group', label: 'Audit & Assurance', url: '#', parentId: 'accounting-root' },
-      { id: 'audit-int', label: 'Internal Audit', url: 'services.html#audit', parentId: 'audit-group' },
-
-      // Financial Reporting (Group)
+      
+      // Financial Reporting
       { id: 'reporting-group', label: 'Financial Reporting', url: '#', parentId: 'accounting-root' },
       { id: 'reporting', label: 'Financial Statements', url: 'services.html#reporting', parentId: 'reporting-group' },
       { id: 'management', label: 'Financial Management', url: 'services.html#management', parentId: 'reporting-group' },
+      
+      // Audit
+      { id: 'audit-group', label: 'Audit & Assurance', url: '#', parentId: 'accounting-root' },
+      { id: 'audit-int', label: 'Internal Audit', url: 'services.html#audit', parentId: 'audit-group' },
 
-      // Tax Services (Group)
-      { id: 'tax-group', label: 'Tax Services', url: '#', parentId: 'accounting-root' },
+      // 3. Tax & VAT
+      { id: 'tax-vat-root', label: 'Tax & VAT', url: '#', parentId: '' },
+      
+      // VAT Services
+      { id: 'vat-group', label: 'VAT Services', url: '#', parentId: 'tax-vat-root' },
+      { id: 'vat-proc', label: 'VAT Accounting', url: 'vat-accounting.html', parentId: 'vat-group' },
+      { id: 'vat-return', label: 'VAT Return Filing', url: 'vat-return.html', parentId: 'vat-group' },
+      
+      // Tax Services
+      { id: 'tax-group', label: 'Corporate & Other Tax', url: '#', parentId: 'tax-vat-root' },
       { id: 'excise', label: 'Excise Tax', url: 'services.html#excise', parentId: 'tax-group' },
       { id: 'other-tax', label: 'Other Taxation', url: 'services.html#other-tax', parentId: 'tax-group' },
 
-      // 3. Business Setup (Standard Dropdown)
-      { id: 'business-setup', label: 'Business Setup', url: '#', parentId: '' },
+      // 4. Business Setup
+      { id: 'business-setup', label: 'Business Setup', url: '#', parentId: '', isMega: true },
       
-      // Mainland (Group)
+      // Mainland
       { id: 'mainland', label: 'UAE Mainland', url: '#', parentId: 'business-setup' },
       { id: 'dubai-mainland', label: 'Dubai Mainland', url: 'services.html#mainland', parentId: 'mainland' },
       { id: 'abu-dhabi-mainland', label: 'Abu Dhabi Mainland', url: 'services.html#mainland', parentId: 'mainland' },
       { id: 'ajman-mainland', label: 'Ajman Mainland', url: 'services.html#mainland', parentId: 'mainland' },
       { id: 'sharjah-mainland', label: 'Sharjah Mainland', url: 'services.html#mainland', parentId: 'mainland' },
       
-      // Free Zone (Group)
+      // Free Zone
       { id: 'freezone', label: 'UAE Free Zone', url: '#', parentId: 'business-setup' },
       { id: 'dubai-freezone', label: 'Dubai Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
       { id: 'ifza', label: 'IFZA', url: 'services.html#freezone', parentId: 'freezone' },
@@ -49,30 +52,30 @@ document.addEventListener('DOMContentLoaded', function() {
       { id: 'sharjah-freezone', label: 'Sharjah Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
       { id: 'ajman-freezone', label: 'Ajman Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
       
-      // Offshore (Group)
+      // Offshore
       { id: 'offshore', label: 'UAE Offshore', url: '#', parentId: 'business-setup' },
       { id: 'dubai-offshore', label: 'Dubai Offshore', url: 'services.html#offshore', parentId: 'offshore' },
       { id: 'jebel-ali', label: 'Jebel Ali Offshore', url: 'services.html#offshore', parentId: 'offshore' },
       { id: 'rak-offshore', label: 'Ras Al Khaimah Offshore', url: 'services.html#offshore', parentId: 'offshore' },
       { id: 'ajman-offshore', label: 'Ajman Offshore', url: 'services.html#offshore', parentId: 'offshore' },
       
-      // Packages (Group)
+      // Packages
       { id: 'packages', label: 'Packages', url: '#', parentId: 'business-setup' },
       { id: 'view-packages', label: 'View All Packages', url: 'services.html#packages', parentId: 'packages' },
 
-      // 4. About
+      // 5. About Us
       { id: 'about', label: 'About Us', url: '', parentId: '' },
       { id: 'about-overview', label: 'Company Overview', url: 'about.html', parentId: 'about' },
       { id: 'about-benefits', label: 'Why Choose Us', url: 'about.html#benefits', parentId: 'about' },
       { id: 'our-experts', label: 'Our Team', url: 'about.html#team', parentId: 'about' },
 
-      // 5. Contact
+      // 6. Contact
       { id: 'contact', label: 'Contact', url: 'contact.html', parentId: '' }
     ];
   }
   function getNavItems() {
     try {
-      var saved = JSON.parse(localStorage.getItem('axonNavItems_v3') || '[]');
+      var saved = JSON.parse(localStorage.getItem('axonNavItems_v6') || '[]');
       if (!saved.length) return defaultNavItems();
       return saved;
     } catch (e) {
@@ -80,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   function setNavItems(items) {
-    localStorage.setItem('axonNavItems_v3', JSON.stringify(items));
+    localStorage.setItem('axonNavItems_v6', JSON.stringify(items));
   }
   function buildNavMenu() {
     var nav = document.querySelector('.nav-links');
