@@ -2,27 +2,56 @@ document.addEventListener('DOMContentLoaded', function() {
   function defaultNavItems() {
     return [
       { id: 'home', label: 'Home', url: 'index.html', parentId: '' },
-      { id: 'about', label: 'About', url: '', parentId: '' },
+      { id: 'business-setup', label: 'Business Setup', url: '#', parentId: '', isMega: true },
+      // Mainland
+      { id: 'mainland', label: 'UAE Mainland', url: '#', parentId: 'business-setup', isHeader: true },
+      { id: 'dubai-mainland', label: 'Dubai Mainland', url: 'services.html#mainland', parentId: 'mainland' },
+      { id: 'abu-dhabi-mainland', label: 'Abu Dhabi Mainland', url: 'services.html#mainland', parentId: 'mainland' },
+      { id: 'ajman-mainland', label: 'Ajman Mainland', url: 'services.html#mainland', parentId: 'mainland' },
+      { id: 'sharjah-mainland', label: 'Sharjah Mainland', url: 'services.html#mainland', parentId: 'mainland' },
+      // Free Zone
+      { id: 'freezone', label: 'UAE Free Zone', url: '#', parentId: 'business-setup', isHeader: true },
+      { id: 'dubai-freezone', label: 'Dubai Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'ifza', label: 'IFZA', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'abu-dhabi-freezone', label: 'Abu Dhabi Free zone', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'rak-freezone', label: 'Ras Al Khaimah Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'rakez', label: 'RAKEZ', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'sharjah-freezone', label: 'Sharjah Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
+      { id: 'ajman-freezone', label: 'Ajman Free Zone', url: 'services.html#freezone', parentId: 'freezone' },
+      // Offshore
+      { id: 'offshore', label: 'UAE Offshore', url: '#', parentId: 'business-setup', isHeader: true },
+      { id: 'dubai-offshore', label: 'Dubai Offshore', url: 'services.html#offshore', parentId: 'offshore' },
+      { id: 'jebel-ali', label: 'Jebel Ali Offshore', url: 'services.html#offshore', parentId: 'offshore' },
+      { id: 'rak-offshore', label: 'Ras Al Khaimah Offshore', url: 'services.html#offshore', parentId: 'offshore' },
+      { id: 'ajman-offshore', label: 'Ajman Offshore', url: 'services.html#offshore', parentId: 'offshore' },
+      // Packages
+      { id: 'packages', label: 'Packages', url: '#', parentId: 'business-setup', isHeader: true },
+      { id: 'view-packages', label: 'View All Packages', url: 'services.html#packages', parentId: 'packages' },
+
+      { id: 'about', label: 'Our Services', url: '', parentId: '' },
       { id: 'about-overview', label: 'About Overview', url: 'about.html', parentId: 'about' },
       { id: 'about-benefits', label: 'How You Benefit', url: 'about.html#benefits', parentId: 'about' },
-      { id: 'accounting', label: 'Accounting & Bookkeeping', url: '', parentId: '' },
+      { id: 'accounting', label: 'Accounting & Bookkeeping', url: '', parentId: 'about' },
       { id: 'bookkeeping', label: 'Bookkeeping', url: 'bookkeeping.html', parentId: 'accounting' },
-      { id: 'vat', label: 'VAT Services', url: '', parentId: '' },
+      { id: 'vat', label: 'VAT Services', url: '', parentId: 'about' },
       { id: 'vat-proc', label: 'VAT Accounting Procedures', url: 'vat-accounting.html', parentId: 'vat' },
       { id: 'vat-return', label: 'VAT Return Filing', url: 'vat-return.html', parentId: 'vat' },
-      { id: 'audit', label: 'Audit & Controls', url: '', parentId: '' },
+      { id: 'audit', label: 'Audit & Controls', url: '', parentId: 'about' },
       { id: 'audit-int', label: 'Internal Audit & Controls', url: 'services.html#audit', parentId: 'audit' },
-      { id: 'statements', label: 'Financial Statements', url: '', parentId: '' },
+      { id: 'statements', label: 'Financial Statements', url: '', parentId: 'about' },
       { id: 'reporting', label: 'Financial Reporting', url: 'services.html#reporting', parentId: 'statements' },
-      { id: 'management', label: 'Financial Management', url: 'services.html#management', parentId: '' },
-      { id: 'tax', label: 'Tax', url: '', parentId: '' },
+      { id: 'management', label: 'Financial Management', url: 'services.html#management', parentId: 'about' },
+      { id: 'tax', label: 'Tax', url: '', parentId: 'about' },
       { id: 'excise', label: 'Excise Tax', url: 'services.html#excise', parentId: 'tax' },
-      { id: 'other-tax', label: 'Other Taxation Matters', url: 'services.html#other-tax', parentId: 'tax' }
+      { id: 'other-tax', label: 'Other Taxation Matters', url: 'services.html#other-tax', parentId: 'tax' },
+      
+      { id: 'new-packages', label: 'New Packages', url: 'services.html#packages', parentId: '' },
+      { id: 'our-experts', label: 'Our Experts', url: 'about.html#team', parentId: '' }
     ];
   }
   function getNavItems() {
     try {
-      var saved = JSON.parse(localStorage.getItem('axonNavItems') || '[]');
+      var saved = JSON.parse(localStorage.getItem('axonNavItems_v2') || '[]');
       if (!saved.length) return defaultNavItems();
       return saved;
     } catch (e) {
@@ -30,40 +59,96 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   function setNavItems(items) {
-    localStorage.setItem('axonNavItems', JSON.stringify(items));
+    localStorage.setItem('axonNavItems_v2', JSON.stringify(items));
   }
   function buildNavMenu() {
     var nav = document.querySelector('.nav-links');
     if (!nav) return;
     var items = getNavItems();
-    var parents = items.filter(function(item) { return !item.parentId; });
-    var children = items.filter(function(item) { return item.parentId; });
+    var roots = items.filter(function(item) { return !item.parentId; });
+    
+    function getChildren(parentId) {
+      return items.filter(function(item) { return item.parentId === parentId; });
+    }
+
     nav.innerHTML = '';
-    parents.forEach(function(parent) {
-      var childItems = children.filter(function(child) { return child.parentId === parent.id; });
-      if (childItems.length) {
+    
+    roots.forEach(function(root) {
+      var children = getChildren(root.id);
+      
+      if (children.length) {
         var dd = document.createElement('div');
         dd.className = 'dropdown';
+        if (root.isMega) dd.classList.add('mega-dropdown');
+        
         var btn = document.createElement('button');
         btn.className = 'trigger focus-ring';
         btn.setAttribute('aria-haspopup', 'true');
         btn.setAttribute('aria-expanded', 'false');
-        btn.textContent = parent.label;
+        btn.textContent = root.label;
+        
         var menu = document.createElement('div');
         menu.className = 'menu';
-        childItems.forEach(function(child) {
-          var a = document.createElement('a');
-          a.href = child.url || '#';
-          a.textContent = child.label;
-          menu.appendChild(a);
-        });
+        if (root.isMega) menu.classList.add('mega-menu');
+        
+        if (root.isMega) {
+          // Mega Menu Structure: Root -> Header -> Children
+          children.forEach(function(header) {
+            var col = document.createElement('div');
+            col.className = 'mega-column';
+            
+            var colTitle = document.createElement('div');
+            colTitle.className = 'mega-header';
+            colTitle.textContent = header.label;
+            col.appendChild(colTitle);
+            
+            var subItems = getChildren(header.id);
+            subItems.forEach(function(sub) {
+              var a = document.createElement('a');
+              a.href = sub.url || '#';
+              a.textContent = sub.label;
+              col.appendChild(a);
+            });
+            menu.appendChild(col);
+          });
+        } else {
+          // Standard Dropdown with optional grouping
+          children.forEach(function(child) {
+            var grandChildren = getChildren(child.id);
+            if (grandChildren.length) {
+              // Group Header
+              var group = document.createElement('div');
+              group.className = 'menu-group';
+              
+              var groupTitle = document.createElement('div');
+              groupTitle.className = 'group-header';
+              groupTitle.textContent = child.label;
+              group.appendChild(groupTitle);
+              
+              grandChildren.forEach(function(grand) {
+                var a = document.createElement('a');
+                a.href = grand.url || '#';
+                a.textContent = grand.label;
+                group.appendChild(a);
+              });
+              menu.appendChild(group);
+            } else {
+              // Simple Link
+              var a = document.createElement('a');
+              a.href = child.url || '#';
+              a.textContent = child.label;
+              menu.appendChild(a);
+            }
+          });
+        }
+        
         dd.appendChild(btn);
         dd.appendChild(menu);
         nav.appendChild(dd);
       } else {
         var link = document.createElement('a');
-        link.href = parent.url || '#';
-        link.textContent = parent.label;
+        link.href = root.url || '#';
+        link.textContent = root.label;
         nav.appendChild(link);
       }
     });
@@ -420,17 +505,32 @@ document.addEventListener('DOMContentLoaded', function() {
   var navList = document.getElementById('nav-list');
   var navMsg = document.getElementById('nav-msg');
   var navReset = document.getElementById('nav-reset');
+  var navMega = document.getElementById('nav-mega');
+
   function renderNavAdmin() {
     if (!navAdminPanel || !navList || !navParent) return;
     var items = getNavItems();
-    var parents = items.filter(function(item) { return !item.parentId; });
+    
+    // Populate Parent Dropdown with Hierarchy (2 levels deep to allow creating 3rd level items)
     navParent.innerHTML = '<option value="">Top Level Category</option>';
-    parents.forEach(function(parent) {
+    
+    var roots = items.filter(function(item) { return !item.parentId; });
+    roots.forEach(function(root) {
       var opt = document.createElement('option');
-      opt.value = parent.id;
-      opt.textContent = parent.label;
+      opt.value = root.id;
+      opt.textContent = root.label;
       navParent.appendChild(opt);
+      
+      var children = items.filter(function(i) { return i.parentId === root.id; });
+      children.forEach(function(child) {
+        var cOpt = document.createElement('option');
+        cOpt.value = child.id;
+        cOpt.textContent = '-- ' + child.label;
+        navParent.appendChild(cOpt);
+      });
     });
+
+    // Render List
     navList.innerHTML = '';
     items.forEach(function(item) {
       var row = document.createElement('tr');
@@ -439,7 +539,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var parentItem = items.find(function(p) { return p.id === item.parentId; });
         parentLabel = parentItem ? parentItem.label : '-';
       }
-      [item.label, item.url || '-', parentLabel || '-'].forEach(function(value) {
+      var labelText = item.label;
+      if (item.isMega) labelText += ' (Mega)';
+      
+      [labelText, item.url || '-', parentLabel || '-'].forEach(function(value) {
         var cell = document.createElement('td');
         cell.textContent = value || '-';
         row.appendChild(cell);
@@ -450,7 +553,16 @@ document.addEventListener('DOMContentLoaded', function() {
       del.type = 'button';
       del.textContent = 'Delete';
       del.addEventListener('click', function() {
-        var next = getNavItems().filter(function(i) { return i.id !== item.id && i.parentId !== item.id; });
+        // Delete item and all its children recursively
+        var toDelete = [item.id];
+        var currentLen = 0;
+        while(toDelete.length > currentLen) {
+            currentLen = toDelete.length;
+            var newDeletes = items.filter(function(i) { return toDelete.includes(i.parentId); }).map(function(i) { return i.id; });
+            newDeletes.forEach(function(id) { if(!toDelete.includes(id)) toDelete.push(id); });
+        }
+        
+        var next = items.filter(function(i) { return !toDelete.includes(i.id); });
         setNavItems(next);
         renderNavAdmin();
         buildNavMenu();
@@ -467,6 +579,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var label = navLabel.value.trim();
       var url = navUrl ? navUrl.value.trim() : '';
       var parentId = navParent ? navParent.value : '';
+      var isMega = navMega ? navMega.checked : false;
+
       if (!label) {
         if (navMsg) {
           navMsg.textContent = 'Please enter a name.';
@@ -474,10 +588,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return;
       }
+      
+      // Only top level can be mega
+      if (parentId) isMega = false;
+
       var items = getNavItems();
       var id = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Date.now().toString(36);
-      items.push({ id: id, label: label, url: url, parentId: parentId });
+      
+      var newItem = { id: id, label: label, url: url, parentId: parentId };
+      if (isMega) newItem.isMega = true;
+      
+      items.push(newItem);
       setNavItems(items);
+      
       if (navMsg) {
         navMsg.textContent = 'Menu item added.';
         navMsg.classList.remove('error');
@@ -485,6 +608,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (navLabel) navLabel.value = '';
       if (navUrl) navUrl.value = '';
       if (navParent) navParent.value = '';
+      if (navMega) navMega.checked = false;
+      
       renderNavAdmin();
       buildNavMenu();
     });
